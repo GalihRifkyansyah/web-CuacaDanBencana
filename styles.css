@@ -1,0 +1,252 @@
+/* Font Awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+
+/* General styles */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f8fb;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(90deg, #0099f7 0%, #f11712 100%);
+    color: #fff;
+    padding: 24px 0 12px 0;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+header h1 {
+    margin: 0 0 8px 0;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.05rem;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: #ffe082;
+}
+
+section {
+    background: #fff;
+    margin: 32px auto;
+    max-width: 900px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    padding: 32px 28px;
+    position: relative;
+}
+
+section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+section#prakiraan h2::before { content: "\f0c2"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #0099f7; }
+section#peringatan h2::before { content: "\f071"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #f11712; }
+section#peta h2::before { content: "\f279"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #43cea2; }
+section#artikel h2::before { content: "\f02d"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #ffb347; }
+section#kontak h2::before { content: "\f095"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #009688; }
+section#berita h2::before { content: "\f1ea"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #ff5252; }
+section#laporan h2::before { content: "\f249"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #673ab7; }
+
+.weather-search {
+    margin: 18px 0;
+    display: flex;
+    gap: 8px;
+}
+
+.weather-search input {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #bdbdbd;
+    font-size: 1rem;
+    width: 220px;
+}
+
+.weather-search button {
+    background: #0099f7;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.weather-search button:hover {
+    background: #f11712;
+}
+
+.weather-card {
+    background: #e3f2fd;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    text-align: center;
+}
+
+.current-main img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 8px;
+}
+
+.temp-main {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #0099f7;
+    margin: 8px 0;
+}
+
+.weather-desc {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.weather-details {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.detail-card {
+    background: #fffde7;
+    border-radius: 8px;
+    flex: 1;
+    padding: 12px 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+.detail-title {
+    font-size: 1.08rem;
+    margin-bottom: 8px;
+    color: #f11712;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.detail-title::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 4px;
+}
+
+.detail-title:contains("Kualitas Udara")::before { content: "\f6c4"; color: #43cea2; }
+.detail-title:contains("Kelembaban & Tekanan")::before { content: "\f043"; color: #0099f7; }
+.detail-title:contains("Angin & Matahari")::before { content: "\f185"; color: #ffb347; }
+
+.forecast-container {
+    background: #f1f8e9;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 12px;
+}
+
+.forecast-days {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+footer {
+    background: #0099f7;
+    color: #fff;
+    text-align: center;
+    padding: 16px 0;
+    margin-top: 32px;
+    border-radius: 0 0 12px 12px;
+}
+
+#warning-info ul li {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+    padding-left: 24px;
+    position: relative;
+}
+
+#warning-info ul li::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: "\f06a";
+    color: #f11712;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+#map {
+    margin-bottom: 12px;
+    border: 2px solid #0099f7;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+}
+
+#report-form label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+#report-form input, #report-form select, #report-form textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #bdbdbd;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+#report-form button {
+    background: #673ab7;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+
+#report-form button:hover {
+    background: #0099f7;
+}
+
+@media (max-width: 700px) {
+    section {
+        padding: 18px 8px;
+    }
+    .weather-details {
+        flex-direction: column;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Cuaca & Bencana Alam</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <script src="scripts.js"></script>
+    <style>
+        #map { 
+            height: 400px;
+            width: 100%;
+            border-radius: 8px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+    <header>
+        <h1>Web Cuaca & Bencana Alam</h1>
+        <nav>
+            <ul>
+                <li><a href="#prakiraan">Prakiraan Cuaca</a></li>
+                <li><a href="#peringatan">Peringatan Dini</a></li>
+                <li><a href="#peta">Peta Interaktif</a></li>
+                <li><a href="#artikel">Artikel Edukasi</a></li>
+                <li><a href="#kontak">Kontak Darurat</a></li>
+                <li><a href="#berita">Berita Terkini</a></li>
+                <li><a href="#laporan">Fitur Pelaporan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="prakiraan">
+            <h2>Prakiraan Cuaca</h2>
+            <p>Informasi cuaca harian, mingguan, dan bulanan.</p>
+            <div id="weather-info">
+                <ul>
+                    <li>Hari ini: Cerah, suhu 32°C, kelembaban 70%</li>
+                    <li>Besok: Hujan ringan, suhu 29°C, kelembaban 80%</li>
+                    <li>Minggu ini: Campuran cerah dan hujan, suhu rata-rata 30°C</li>
+                    <li>Bulan ini: Potensi hujan lebat di beberapa wilayah</li>
+                </ul>
+                <div class="weather-search">
+                    <input type="text" id="location-input" placeholder="Masukkan lokasi...">
+                    <button id="search-btn">Cari</button>
+                </div>
+                <div id="weather-result">
+                    <div id="current-weather" class="weather-card"></div>
+                    <div class="weather-details">
+                        <div class="detail-card">
+                            <h3 class="detail-title">Kualitas Udara</h3>
+                            <div id="air-quality"></div>
+                        </div>
+                        <div class="detail-card">
+                            <h3 class="detail-title">Kelembaban & Tekanan</h3>
+                            <div id="humidity-pressure"></div>
+                        </div>
+                        <div class="detail-card">
+                            <h3 class="detail-title">Angin & Matahari</h3>
+                            <div id="wind-sun"></div>
+                        </div>
+                    </div>
+                    <div id="forecast" class="forecast-container">
+                        <h3>Prakiraan 5 Hari</h3>
+                        <div class="forecast-days"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="peringatan">
+            <h2>Peringatan Dini Bencana</h2>
+            <p>Notifikasi tentang bencana alam.</p>
+            <div id="warning-info">
+                <ul>
+                    <li><strong>Gempa bumi:</strong> Terjadi gempa 5.2 SR di wilayah Sumatera Barat, waspada gempa susulan.</li>
+                    <li><strong>Banjir:</strong> Peringatan banjir di Jakarta dan sekitarnya, hindari daerah aliran sungai.</li>
+                    <li><strong>Cuaca ekstrem:</strong> Potensi angin kencang di Jawa Timur.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="peta">
+            <h2>Peta Interaktif</h2>
+            <div id="map" style="height: 400px;"></div>
+            <p>Peta di atas menampilkan lokasi bencana terbaru dan area rawan di Indonesia. Klik marker untuk detail lokasi.</p>
+        </section>
+
+        <section id="artikel">
+            <h2>Artikel Edukasi</h2>
+            <ul>
+                <li><a href="#">Panduan keselamatan saat gempa bumi</a></li>
+                <li><a href="#">Langkah mitigasi banjir di lingkungan rumah</a></li>
+                <li><a href="#">Cara mempersiapkan tas siaga bencana</a></li>
+                <li><a href="#">Tips menghadapi cuaca ekstrem</a></li>
+            </ul>
+        </section>
+
+        <section id="kontak">
+            <h2>Kontak Darurat</h2>
+            <ul>
+                <li>BNPB: 117</li>
+                <li>PMI: 021-7992325</li>
+                <li>SAR Nasional: 115</li>
+                <li>Polisi: 110</li>
+                <li>Ambulans: 118</li>
+            </ul>
+        </section>
+
+        <section id="berita">
+            <h2>Berita Terkini</h2>
+            <ul>
+                <li><strong>22 Juli 2025:</strong> Banjir melanda Jakarta, ribuan warga mengungsi.</li>
+                <li><strong>21 Juli 2025:</strong> BMKG keluarkan peringatan dini cuaca ekstrem di Sumatera.</li>
+                <li><strong>20 Juli 2025:</strong> Gempa bumi dirasakan di Bali, tidak berpotensi tsunami.</li>
+            </ul>
+        </section>
+
+        <section id="laporan">
+            <h2>Fitur Pelaporan</h2>
+            <form id="report-form">
+                <label for="report-location">Lokasi Kejadian:</label>
+                <input type="text" id="report-location" name="report-location" required>
+                <label for="report-type">Jenis Bencana:</label>
+                <select id="report-type" name="report-type">
+                    <option value="banjir">Banjir</option>
+                    <option value="gempa">Gempa Bumi</option>
+                    <option value="angin">Angin Kencang</option>
+                    <option value="lainnya">Lainnya</option>
+                </select>
+                <label for="report-desc">Deskripsi:</label>
+                <textarea id="report-desc" name="report-desc" rows="3" required></textarea>
+                <button type="submit">Kirim Laporan</button>
+            </form>
+            <p>Laporan Anda akan membantu pihak berwenang dalam penanganan bencana.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Web Cuaca & Bencana Alam</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Updated weather display function
+        function displayDetailedWeather(data) {
+            const weatherDiv = document.getElementById('current-weather');
+            const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            
+            weatherDiv.innerHTML = `
+                <div class="current-main">
+                    <h3>${data.name}</h3>
+                    <img src="${iconUrl}" alt="Weather icon">
+                    <p class="temp-main">${Math.round(data.main.temp)}°C</p>
+                    <p class="weather-desc">${data.weather[0].description}</p>
+                </div>
+            `;
+            
+            // Air quality
+            document.getElementById('air-quality').innerHTML = `
+                <p>Indeks: 85 (Baik)</p>
+                <p>PM2.5: 12 µg/m³</p>
+            `;
+            
+            // Humidity and pressure
+            document.getElementById('humidity-pressure').innerHTML = `
+                <p>Kelembaban: ${data.main.humidity}%</p>
+                <p>Tekanan: ${data.main.pressure} hPa</p>
+                <p>Dew Point: ${Math.round(data.main.feels_like)}°C</p>
+            `;
+            
+            // Wind and sun
+            document.getElementById('wind-sun').innerHTML = `
+                <p>Angin: ${data.wind.speed} m/s (${data.wind.deg}°)</p>
+                <p>Awan: ${data.clouds.all}%</p>
+                <p>UV: 6 (Sedang)</p>
+            `;
+        }
+    </script>
+    <script>
+        // Initialize map focused on Indonesia
+        const map = L.map('map').setView([-2.5489, 118.0149], 5);
+        
+        // Add OpenStreetMap base layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Sample marker for demo (Jakarta)
+        L.marker([-6.2000, 106.8167]).addTo(map)
+            .bindPopup('<b>Jakarta</b><br>Contoh lokasi bencana.')
+            .openPopup();
+    </script>
+</body>
+</html>
